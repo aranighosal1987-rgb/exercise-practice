@@ -1,6 +1,11 @@
 name: Deploy Hello World
 
 on:
+  pull_request:
+    type: 
+      - opened
+
+  workflow_dispatch:
   push:
     branches:
       - main
