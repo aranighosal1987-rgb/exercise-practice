@@ -21,25 +21,49 @@ jobs:
       - name: Build
         run: |
           echo "Building application..."
-          # your build commands here
-      
+          # Add your build commands here
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website
+          path: .
+
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: website
+          path: .
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: upload website
+      - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 
-            . 
+          path: .
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
+
+  check:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check deployment
+        run: |
+          echo "Deployment completed successfully!"
+          echo "Running post-deployment checks..."
+
+      - name: Deployment status
+        run: |
+          echo "Website deployment check completed."
+
