@@ -23,11 +23,6 @@ jobs:
           echo "Building application..."
           # your build commands here
       
-      - name: Upload website
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 
-            . 
 
   deploy:
     needs: build
@@ -40,8 +35,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Download website
-        uses: actions/Download-pages-artifact@v3
+      - name: upload website
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 
             . 
