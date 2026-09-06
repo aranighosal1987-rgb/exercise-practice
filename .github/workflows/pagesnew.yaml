@@ -26,6 +26,10 @@ jobs:
         run: |
           VERSION="1.2.3"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      
+      - name: Update HTML version
+        run: |
+          sed -i "s/{{VERSION}}/${{ steps.version.outputs.version }}/g" index.html
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -43,7 +47,7 @@ jobs:
       - name: Show build output
         run: |
           echo "Deploying version: ${{ needs.build.outputs.version }}"
-          
+
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
