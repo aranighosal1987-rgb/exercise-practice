@@ -29,7 +29,7 @@ jobs:
       
       - name: Update HTML version
         run: |
-          sed -i "s/{{VERSION}}/${{ steps.version.outputs.version }}/g" index.html
+          sed -i "s/{{VERSION}}/${{ steps.build.outputs.version }}/g" index.html
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
