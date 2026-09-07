@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 env:
-  APP_NAME: "Hello World"
+  APP_NAME: ${{ secrets.APP_NAME }}
   ENVIRONMENT: "production"
 
 jobs:
